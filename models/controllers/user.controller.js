@@ -1,4 +1,5 @@
-const User = require("../user.models")
+const User = require("../user.models");
+const nodemailer = require("nodemailer")
 
 // post user
 
@@ -53,4 +54,34 @@ res.status(200).json({message:"user deleted"})
     }
 }
 
-module.exports = {postUser,getUser,getOneUser,deleteOneUser}
+// sending email
+
+const sendEmail = async(req, res) => {
+    const {name,email,message} = req.body;
+    const transiporter = nodemailer.createTransport({
+        service:"gmail",
+        auth:{
+            user: process.env.EMAIL,
+            pass: process.env.PASSWORD
+        }
+
+    })
+    let mailOptions = {
+        from: email,
+        to: process.env.EMAIL,
+        subject: `new message from ${name}`,
+        text: `Name: ${name}\nEmail: ${email}\n\nMessage: ${message}`,
+    }
+    try {
+        await transiporter.sendMail(mailOptions);
+        res.status(200).json({message:"Message sent successfully!"})
+        
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error:"failed to send message"})
+        
+    }
+
+}
+
+module.exports = {postUser,getUser,getOneUser,deleteOneUser,sendEmail}

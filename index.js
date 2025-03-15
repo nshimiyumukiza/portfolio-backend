@@ -2,7 +2,9 @@ const express = require("express")
 const mongoose =require("mongoose")
 const userRouter = require("../portfolio-backend/routers/userRouter")
 const cors = require("cors")
+const  dotenv = require("dotenv")
 
+dotenv.config();
 
 const app = express()
 app.use(express.json())
@@ -13,13 +15,15 @@ app.use("/user",userRouter)
 app.get("/",(req,res)=>{
     res.send("hi erneste")
 })
+const port = process.env.PORT || 4500;
+const db = process.env.DATABASE
 
-mongoose.connect("mongodb+srv://nshimiyumukizaerneste99:k3PxzuMOxQCLaqQb@cluster0.uealx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(db)
 .then(()=>{
-    console.log("connected to DataBase")
+    console.log("connection to database")
 
     app.listen("4500",()=>{
-        console.log("port running...")
+        console.log(`port running on ${port}`)
     })
 })
 .catch((err)=>{
