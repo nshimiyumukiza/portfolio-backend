@@ -74,11 +74,11 @@ const sendEmail = async(req, res) => {
     }
     try {
         await transiporter.sendMail(mailOptions);
-        res.status(200).json({message:"Message sent successfully!"})
+        return res.status(200).json({message:"Message sent successfully!"})
         
     } catch (error) {
         console.error(error);
-        res.status(500).json({error:"failed to send message"})
+      return res.status(500).json({error:"failed to send message"})
         
     }
 
