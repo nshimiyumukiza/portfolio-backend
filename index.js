@@ -1,6 +1,6 @@
 const express = require("express")
 const mongoose =require("mongoose")
-const userRouter = require("../portfolio-backend/routers/userRouter")
+const userRouter = require("./routers/userRouter.js")
 const cors = require("cors")
 const  dotenv = require("dotenv")
 

@@ -1,5 +1,5 @@
-const { get } = require("mongoose")
-const{postUser,getUser,getOneUser, deleteOneUser,sendEmail} = require("../models/controllers/user.controller")
+
+const{getUser,getOneUser, deleteOneUser,sendEmail} = require("../models/controllers/user.controller")
  const{empty,userExit} = require("../middleware/datacheker")
 const express =require("express")
 
