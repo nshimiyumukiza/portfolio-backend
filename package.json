@@ -12,6 +12,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongoose": "^8.9.5",
+    "multer": "^2.0.1",
     "nodemailer": "^6.10.0"
   },
   "devDependencies": {
